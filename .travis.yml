@@ -1,0 +1,8 @@
+language: c
+before_script:
+- sudo apt-get update
+- sudo apt-get build-dep -qq gettext
+- wget http://ftp.gnu.org/gnu/automake/automake-1.13.4.tar.xz && tar xf automake-1.13.4.tar.xz && cd automake-1.13.4 && ./configure && make -j && sudo make install && cd ..
+# automake 1.13 provides macro AM_EXTRA_RECURSIVE_TARGETS
+script:
+- ./autogen.sh && ./configure && make -j && make -j check && sudo make install
